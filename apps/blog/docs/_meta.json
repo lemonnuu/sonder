@@ -9,5 +9,11 @@
     "name": "guide",
     "label": "指南",
     "collapsible": false
+  },
+  {
+    "type": "dir",
+    "name": "examples",
+    "label": "示例",
+    "collapsible": false
   }
 ]

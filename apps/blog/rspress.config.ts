@@ -30,6 +30,9 @@ export default defineConfig({
     defaultWrapCode: false,
   },
 
+  // 全局样式
+  globalStyles: path.join(__dirname, 'styles/index.css'),
+
   // 主题配置
   themeConfig: {
     // 社交链接
