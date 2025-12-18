@@ -1,0 +1,411 @@
+---
+description: Sonder 项目配置规范
+alwaysApply: true
+enabled: true
+updatedAt: 2025-12-18T09:22:20.235Z
+provider: 
+---
+
+# Sonder 项目配置规范
+
+## 技术栈版本要求
+
+| 依赖 | 版本要求 |
+|------|----------|
+| Rspress | v2.0.0-rc.2 |
+| React | >= 19.0.0 |
+| Node.js | >= 18.0.0 |
+
+## 目录结构
+
+```
+sonder/
+├── apps/                          # 应用目录
+│   └── blog/                      # 文档站点
+│       ├── docs/                  # 文档内容
+│       │   ├── guide/             # 指南文档
+│       │   ├── api/               # API 文档
+│       │   └── examples/          # 示例文档
+│       ├── theme/                 # 自定义主题
+│       └── rspress.config.ts      # Rspress 配置文件
+├── packages/                      # 包目录
+│   ├── components/                # 组件库
+│   │   ├── src/
+│   │   │   ├── components/        # 组件源码
+│   │   │   ├── hooks/             # 自定义 Hooks
+│   │   │   ├── utils/             # 工具函数
+│   │   │   └── index.ts           # 入口文件
+│   │   └── package.json
+│   └── shared/                    # 共享模块
+│       ├── src/
+│       └── package.json
+├── scripts/                       # 脚本目录
+├── node_modules/
+├── package.json
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+└── nx.json
+```
+
+## 命名规范
+
+### 组件命名
+
+| 类型 | 命名规则 | 示例 |
+|------|----------|------|
+| 组件文件 | PascalCase | `Button.tsx`, `UserCard.tsx` |
+| 组件目录 | PascalCase | `Button/`, `UserCard/` |
+| 组件入口 | index.ts | `Button/index.ts` |
+| 样式文件 | 同组件名 | `Button.module.css` |
+| 测试文件 | 同组件名 + .test | `Button.test.tsx` |
+
+### 组件目录结构
+
+```
+ComponentName/
+├── index.ts                       # 导出入口
+├── ComponentName.tsx              # 组件实现
+├── ComponentName.module.css       # 组件样式
+├── ComponentName.test.tsx         # 单元测试
+└── types.ts                       # 类型定义
+```
+
+### 页面命名
+
+| 类型 | 命名规则 | 示例 |
+|------|----------|------|
+| 页面文件 | kebab-case | `getting-started.mdx`, `quick-start.mdx` |
+| 页面目录 | kebab-case | `getting-started/`, `api-reference/` |
+| 路由路径 | kebab-case | `/guide/getting-started` |
+
+### 文件命名总结
+
+| 文件类型 | 命名规则 | 示例 |
+|----------|----------|------|
+| React 组件 | PascalCase | `MyComponent.tsx` |
+| Hook 文件 | camelCase + use 前缀 | `useToggle.ts` |
+| 工具函数 | camelCase | `formatDate.ts` |
+| 常量文件 | camelCase | `constants.ts` |
+| 类型文件 | camelCase | `types.ts` |
+| 配置文件 | kebab-case | `rspress.config.ts` |
+| 文档文件 | kebab-case | `quick-start.mdx` |
+
+## 样式规范
+
+### 框架要求
+
+| 要求 | 说明 |
+|------|------|
+| **【必须】** | 使用 Tailwind CSS 作为唯一的原子 CSS 框架 |
+| **【禁止】** | 禁止使用 LESS 预处理器及相关语法 |
+| **【禁止】** | 禁止使用内联样式（inline style） |
+| **【禁止】** | 禁止创建传统 CSS/SCSS 文件 |
+
+### Tailwind CSS 使用规范
+
+**【必须】** 所有样式通过 Tailwind CSS 类名实现：
+
+```tsx
+// ✅ 正确示例
+const Button = () => (
+  <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+    Click me
+  </button>
+);
+
+// ❌ 错误示例 - 禁止内联样式
+const Button = () => (
+  <button style={{ padding: '8px 16px', backgroundColor: 'blue' }}>
+    Click me
+  </button>
+);
+
+// ❌ 错误示例 - 禁止 LESS 语法
+// button.less
+// .button {
+//   @primary-color: #1890ff;
+//   background: @primary-color;
+// }
+```
+
+### 类名组织规范
+
+**【推荐】** 按以下顺序组织 Tailwind 类名：
+
+1. 布局类（display, position, flex, grid）
+2. 尺寸类（width, height, padding, margin）
+3. 排版类（font, text, line-height）
+4. 背景类（background, gradient）
+5. 边框类（border, rounded）
+6. 效果类（shadow, opacity）
+7. 交互类（hover, focus, active）
+
+```tsx
+// ✅ 推荐的类名顺序
+<div className="flex items-center justify-between w-full p-4 text-sm font-medium bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md">
+  Content
+</div>
+```
+
+### 响应式设计
+
+**【必须】** 所有组件和页面必须考虑移动端适配，使用 Tailwind 响应式前缀：
+
+| 断点 | 前缀 | 最小宽度 | 适用设备 |
+|------|------|----------|----------|
+| 默认 | 无 | 0px | 手机（移动优先） |
+| sm | `sm:` | 640px | 大屏手机 |
+| md | `md:` | 768px | 平板 |
+| lg | `lg:` | 1024px | 笔记本 |
+| xl | `xl:` | 1280px | 桌面 |
+| 2xl | `2xl:` | 1536px | 大屏桌面 |
+
+**【必须】** 采用移动优先（Mobile First）策略：
+
+```tsx
+// ✅ 正确示例 - 移动优先
+<div className="w-full md:w-1/2 lg:w-1/3">
+  Responsive content
+</div>
+
+// ✅ 正确示例 - 完整响应式布局
+<div className="flex flex-col md:flex-row gap-4 p-4 md:p-6 lg:p-8">
+  <aside className="w-full md:w-64 lg:w-80">Sidebar</aside>
+  <main className="flex-1">Content</main>
+</div>
+
+// ✅ 正确示例 - 响应式字体
+<h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
+  Title
+</h1>
+
+// ❌ 错误示例 - 未考虑移动端
+<div className="w-1/3">
+  Fixed width content
+</div>
+```
+
+**【必须】** 响应式设计检查清单：
+
+| 检查项 | 要求 |
+|--------|------|
+| 布局 | 移动端使用单列布局，桌面端可多列 |
+| 字体 | 移动端字体适当缩小 |
+| 间距 | 移动端间距适当减小 |
+| 导航 | 移动端考虑汉堡菜单或底部导航 |
+| 触摸 | 可点击元素最小 44x44px |
+| 图片 | 使用响应式图片尺寸 |
+
+### 自定义样式扩展
+
+**【推荐】** 如需自定义样式，在 `tailwind.config.ts` 中扩展：
+
+```typescript
+// tailwind.config.ts
+export default {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#3b82f6',
+        secondary: '#64748b'
+      },
+      spacing: {
+        '18': '4.5rem'
+      }
+    }
+  }
+};
+```
+
+### 禁止事项清单
+
+| 禁止项 | 说明 |
+|--------|------|
+| `.less` 文件 | 禁止创建任何 LESS 文件 |
+| LESS 变量 | 禁止使用 `@variable` 语法 |
+| LESS 混入 | 禁止使用 `.mixin()` 语法 |
+| LESS 嵌套 | 禁止使用 LESS 嵌套规则 |
+| `style` 属性 | 禁止在 JSX 中使用 `style={}` |
+| 传统 CSS 文件 | 禁止创建 `.css` 文件（Tailwind 配置文件除外） |
+
+## Rspress 配置示例
+
+```typescript
+// rspress.config.ts
+import { defineConfig } from 'rspress/config';
+
+export default defineConfig({
+  root: 'docs',
+  title: 'Sonder',
+  icon: '/favicon.ico',
+  themeConfig: {
+    socialLinks: [
+      {
+        icon: 'github',
+        mode: 'link',
+        content: 'https://github.com/your-org/sonder'
+      }
+    ],
+    sidebar: {
+      '/guide/': [
+        {
+          text: '快速开始',
+          link: '/guide/getting-started'
+        }
+      ]
+    }
+  }
+});
+```
+
+## Nx Monorepo 配置规范
+
+### 基本要求
+
+**【必须】** 新增或修改 packages 包时，必须同步适配 Nx 配置：
+
+| 配置项 | 要求 |
+|--------|------|
+| `tsconfig.base.json` | 添加路径别名映射 |
+| `nx.json` | 配置项目默认选项和缓存 |
+| `project.json` | 每个包必须包含项目配置 |
+| 依赖图 | 确保包能被 Nx 依赖图正确识别 |
+
+### 新增包检查清单
+
+**【必须】** 新增包时按以下步骤操作：
+
+1. **创建包目录结构**
+
+```
+packages/new-package/
+├── src/
+│   └── index.ts
+├── package.json
+├── project.json              # Nx 项目配置
+└── tsconfig.json             # 继承 base 配置
+```
+
+2. **配置 `tsconfig.base.json` 路径别名**
+
+```json
+// tsconfig.base.json
+{
+  "compilerOptions": {
+    "paths": {
+      "@sonder/new-package": ["packages/new-package/src/index.ts"],
+      "@sonder/new-package/*": ["packages/new-package/src/*"]
+    }
+  }
+}
+```
+
+3. **创建 `project.json`**
+
+```json
+// packages/new-package/project.json
+{
+  "name": "@sonder/new-package",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/new-package/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/new-package",
+        "main": "packages/new-package/src/index.ts",
+        "tsConfig": "packages/new-package/tsconfig.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
+```
+
+4. **配置包的 `tsconfig.json`**
+
+```json
+// packages/new-package/tsconfig.json
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/packages/new-package",
+    "declaration": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}
+```
+
+5. **配置 `package.json`**
+
+```json
+// packages/new-package/package.json
+{
+  "name": "@sonder/new-package",
+  "version": "0.0.1",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts"
+}
+```
+
+### 依赖管理规范
+
+**【必须】** 包间依赖遵循以下规则：
+
+| 规则 | 说明 |
+|------|------|
+| 内部依赖 | 使用 `@sonder/` 前缀引用内部包 |
+| 路径解析 | 通过 `tsconfig.base.json` 的 paths 解析 |
+| 循环依赖 | 禁止包之间产生循环依赖 |
+| 依赖声明 | 内部包依赖无需在 package.json 中声明 |
+
+```typescript
+// ✅ 正确示例 - 引用内部包
+import { Button } from '@sonder/components';
+import { formatDate } from '@sonder/shared';
+
+// ❌ 错误示例 - 相对路径引用其他包
+import { Button } from '../../components/src';
+```
+
+### Nx 命令使用
+
+**【推荐】** 使用 Nx 命令管理项目：
+
+```bash
+# 查看依赖图
+nx graph
+
+# 构建单个包
+nx build @sonder/components
+
+# 构建受影响的包
+nx affected:build
+
+# 运行所有包的 lint
+nx run-many -t lint
+
+# 查看项目信息
+nx show project @sonder/components
+```
+
+### 冲突避免
+
+**【必须】** 避免与 Nx 插件冲突：
+
+| 注意事项 | 说明 |
+|----------|------|
+| 命名冲突 | 包名不要与 Nx 内置插件重名 |
+| 配置覆盖 | 不要在子项目中覆盖 Nx 全局配置 |
+| 缓存配置 | 遵循 `nx.json` 中的缓存策略 |
+| 生成器 | 优先使用 Nx 生成器创建新包 |
+
+```bash
+# ✅ 推荐 - 使用 Nx 生成器创建库
+nx g @nx/js:lib new-package --directory=packages/new-package
+```
