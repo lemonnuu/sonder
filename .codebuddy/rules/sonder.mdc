@@ -258,6 +258,32 @@ export default defineConfig({
 });
 ```
 
+## ESLint 代码规范
+
+**【必须】** 所有代码必须符合项目 ESLint 配置规范。
+
+详细规则请参考项目根目录的 `eslint.config.mjs` 配置文件。
+
+### 核心原则
+
+| 类别 | 要求 |
+|------|------|
+| 变量声明 | 使用 `const`/`let`，禁止 `var` |
+| 比较运算 | 使用严格相等 `===` 和 `!==` |
+| 代码风格 | 分号结尾、单引号、箭头函数 |
+| TypeScript | 类型导入使用 `type` 关键字，避免 `any` |
+| React | 自闭合组件、遵循 Hooks 规则 |
+
+### 检查与修复
+
+```bash
+# 检查代码
+pnpm lint
+
+# 自动修复
+pnpm lint:fix
+```
+
 ## Nx Monorepo 配置规范
 
 ### 基本要求
