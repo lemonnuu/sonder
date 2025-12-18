@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@sonder/*": ["../../packages/*/src"]
+    }
+  },
+  "include": ["src", "docs", "rspress.config.ts", "env.d.ts"],
+  "exclude": ["node_modules", "doc_build", ".rspress"]
+}

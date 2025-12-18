@@ -1,0 +1,8 @@
+node_modules
+dist
+doc_build
+.rspress
+pnpm-lock.yaml
+coverage
+*.min.js
+*.min.css

@@ -1,0 +1,15 @@
+{
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["**/_meta.json"],
+      "url": "https://unpkg.com/@rspress/core@2.0.0-rc.2/meta-json-schema.json"
+    },
+    {
+      "fileMatch": ["**/_nav.json"],
+      "url": "https://unpkg.com/@rspress/core@2.0.0-rc.2/nav-json-schema.json"
+    }
+  ]
+}

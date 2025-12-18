@@ -1,0 +1,22 @@
+{
+  "name": "@sonder/blog",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview",
+    "clean": "rimraf doc_build .rspress"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@rspress/core": "^2.0.0-rc.2",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  }
+}
