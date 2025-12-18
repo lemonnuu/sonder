@@ -1,0 +1,39 @@
+{
+  "name": "@sonder/rspress-plugin-devkit",
+  "version": "0.1.0",
+  "description": "Rspress plugin development kit with common utilities",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@types/estree-jsx": "^1.0.5",
+    "@types/mdast": "^4.0.4",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@rspress/core": "^2.0.0-rc.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "keywords": [
+    "rspress",
+    "plugin",
+    "devkit"
+  ],
+  "license": "MIT"
+}

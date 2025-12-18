@@ -1,0 +1,33 @@
+{
+  "name": "rspress-plugin-article-stats",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/rspress-plugin-article-stats/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "options": {
+        "command": "tsc -p tsconfig.json",
+        "cwd": "packages/rspress-plugin-article-stats"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["^build"],
+      "options": {
+        "command": "tsc -w -p tsconfig.json",
+        "cwd": "packages/rspress-plugin-article-stats"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rimraf dist",
+        "cwd": "packages/rspress-plugin-article-stats"
+      }
+    }
+  },
+  "tags": ["type:lib", "scope:plugin"]
+}

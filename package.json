@@ -11,6 +11,7 @@
     "dev:blog": "nx run blog:dev",
     "build": "nx run-many --target=build",
     "build:blog": "nx run blog:build",
+    "build:plugins": "nx run-many --target=build --projects=rspress-plugin-devkit,rspress-plugin-article-stats",
     "preview:blog": "nx run blog:preview",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",

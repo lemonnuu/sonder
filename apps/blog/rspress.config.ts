@@ -1,7 +1,14 @@
 import { defineConfig } from '@rspress/core';
 import path from 'node:path';
+import rspressPluginArticleStats from '@sonder/rspress-plugin-article-stats';
 
 export default defineConfig({
+  plugins: [
+    rspressPluginArticleStats({
+      defaultLocale: 'zh-CN',
+    }),
+  ],
+
   // 站点基本信息
   title: 'Sonder Blog',
   description: '基于 Rspress 构建的技术博客',
