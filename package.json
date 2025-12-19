@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "nx run-many --target=dev",
     "dev:blog": "nx run blog:dev",
+    "frontmatter": "npx tsx scripts/auto-frontmatter.ts",
+    "frontmatter:watch": "npx tsx scripts/auto-frontmatter.ts --watch",
     "build": "nx run-many --target=build",
     "build:blog": "nx run blog:build",
     "build:plugins": "nx run-many --target=build --projects=rspress-plugin-devkit,rspress-plugin-article-stats",
@@ -25,6 +27,7 @@
     "@types/node": "^22.15.30",
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.34.0",
+    "chokidar": "^4.0.3",
     "cspell-ban-words": "^0.0.4",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
@@ -35,6 +38,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-packagejson": "^2.5.20",
     "rimraf": "^6.0.1",
+    "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0"
   }
