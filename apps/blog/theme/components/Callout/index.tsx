@@ -7,6 +7,21 @@ export interface CalloutProps {
   children: ReactNode;
 }
 
+// 获取默认 title（首字母大写）
+const getDefaultTitle = (type: string): string => {
+  return type[0].toUpperCase() + type.slice(1).toLowerCase();
+};
+
+// 判断是否为默认 title
+const isDefaultTitle = (type: string, title?: string): boolean => {
+  if (!title) {
+    return true;
+  }
+  const defaultTitle = getDefaultTitle(type);
+  // 同时兼容首字母大写和全大写的默认 title
+  return title === defaultTitle || title === type.toUpperCase();
+};
+
 /**
  * Construct the DOM structure of the container directive.
  * For example:
@@ -26,6 +41,7 @@ export interface CalloutProps {
  */
 export function Callout({ type, title, children }: CalloutProps): ReactNode {
   const isDetails = type === 'details';
+  const showTitle = !isDefaultTitle(type, title);
 
   if (isDetails) {
     return (
@@ -37,8 +53,8 @@ export function Callout({ type, title, children }: CalloutProps): ReactNode {
   }
 
   return (
-    <div className={`rp-callout rp-callout--${type}`}>
-      <div className="rp-callout__title">{title}</div>
+    <div className={`rp-callout rp-callout--${type}${showTitle ? '' : ' rp-callout--no-title'}`}>
+      {showTitle && <div className="rp-callout__title">{title}</div>}
       <div className="rp-callout__content">{children}</div>
     </div>
   );

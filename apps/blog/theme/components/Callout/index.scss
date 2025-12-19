@@ -73,7 +73,7 @@
     font-size: 16px;
     position: relative;
 
-    &::before {
+    &:before {
       content: '';
       position: absolute;
       top: -5%;
@@ -105,6 +105,21 @@
       border-bottom: 1px solid currentColor;
     }
   }
+
+  // 无 title 时的样式调整
+  &--no-title {
+    padding: 12px 24px;
+
+    .rp-callout__content {
+      p:first-child {
+        margin-top: 0;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
 
 // note
@@ -114,7 +129,7 @@
 
   .rp-callout__title {
     color: var(--rp-container-note-text);
-    &::before {
+    &:before {
       background-color: var(--rp-container-note-text);
     }
   }
@@ -137,7 +152,7 @@
 
   .rp-callout__title {
     color: var(--rp-container-tip-text);
-    &::before {
+    &:before {
       background-color: var(--rp-container-tip-text);
     }
   }
@@ -160,7 +175,7 @@
 
   .rp-callout__title {
     color: var(--rp-container-info-text);
-    &::before {
+    &:before {
       background-color: var(--rp-container-info-text);
     }
   }
@@ -183,7 +198,7 @@
 
   .rp-callout__title {
     color: var(--rp-container-warning-text);
-    &::before {
+    &:before {
       background-color: var(--rp-container-warning-text);
     }
   }
@@ -207,7 +222,7 @@
 
   .rp-callout__title {
     color: var(--rp-container-danger-text);
-    &::before {
+    &:before {
       background-color: var(--rp-container-danger-text);
     }
   }
