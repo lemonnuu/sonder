@@ -1,4 +1,5 @@
 import { defineConfig } from '@rspress/core';
+import { pluginSass } from '@rsbuild/plugin-sass';
 import path from 'node:path';
 import rspressPluginArticleStats from '@sonder/rspress-plugin-article-stats';
 
@@ -58,6 +59,7 @@ export default defineConfig({
 
   // 构建配置
   builderConfig: {
+    plugins: [pluginSass()],
     resolve: {
       alias: {
         '@': path.join(__dirname, 'src'),
