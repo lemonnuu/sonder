@@ -26,6 +26,7 @@ export interface ArticleStatsOptions extends WithDefaultLocale {
 export interface ArticleStatsData {
   readingTime: ReadTimeResults;
   wordCount: number;
+  createdAt?: string;
 }
 
 export default function rspressPluginArticleStats(
@@ -59,10 +60,15 @@ export default function rspressPluginArticleStats(
       const content = pageData.content || '';
       const stats = getReadingTime(content);
 
+      // 获取 frontmatter 中的 createdAt
+      const frontmatter = pageData.frontmatter as Record<string, unknown> | undefined;
+      const createdAt = frontmatter?.createdAt as string | undefined;
+
       // 扩展页面数据，添加阅读统计信息
       (pageData as unknown as Record<string, unknown>).articleStats = {
         readingTime: stats,
         wordCount: stats.words,
+        createdAt,
       } satisfies ArticleStatsData;
     },
 
