@@ -6,7 +6,9 @@
     "dev": "rspress dev",
     "build": "rspress build",
     "preview": "rspress preview",
-    "clean": "rimraf doc_build .rspress"
+    "clean": "rimraf doc_build .rspress",
+    "frontmatter": "npx tsx scripts/auto-frontmatter.ts",
+    "frontmatter:watch": "npx tsx scripts/auto-frontmatter.ts --watch"
   },
   "dependencies": {
     "@rspress/shared": "^1.47.0",

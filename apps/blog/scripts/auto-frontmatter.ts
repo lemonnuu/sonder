@@ -6,8 +6,8 @@
  * - watch 模式下只监听文件新增，自动添加 createdAt
  *
  * 使用方式：
- * - 初始化：npx tsx scripts/auto-frontmatter.ts
- * - 监听模式：npx tsx scripts/auto-frontmatter.ts --watch
+ * - 初始化：pnpm frontmatter
+ * - 监听模式：pnpm frontmatter:watch
  */
 
 import { execSync } from 'node:child_process';
@@ -15,7 +15,7 @@ import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from '
 import { extname, join, resolve } from 'node:path';
 
 // 配置
-const DOCS_DIR = resolve(__dirname, '../apps/blog/docs');
+const DOCS_DIR = resolve(__dirname, '../docs');
 const VALID_EXTENSIONS = ['.md', '.mdx'];
 // 排除的文件/目录
 const EXCLUDE_PATTERNS = ['_meta.json', 'public', 'node_modules'];

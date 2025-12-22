@@ -9,8 +9,6 @@
   "scripts": {
     "dev": "nx run-many --target=dev",
     "dev:blog": "nx run blog:dev",
-    "frontmatter": "npx tsx scripts/auto-frontmatter.ts",
-    "frontmatter:watch": "npx tsx scripts/auto-frontmatter.ts --watch",
     "build": "nx run-many --target=build",
     "build:blog": "nx run blog:build",
     "build:plugins": "nx run-many --target=build --projects=rspress-plugin-devkit,rspress-plugin-article-stats",
