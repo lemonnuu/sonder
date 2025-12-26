@@ -30,7 +30,11 @@ export { Nav, type NavProps } from './components/Nav/index';
 export { NavHamburger } from './components/NavHamburger/index';
 export { Outline } from './components/Outline/index';
 export { Overview } from './components/Overview/index';
-export { type Group, type GroupItem, OverviewGroup } from './components/Overview/OverviewGroup';
+export {
+  type Group,
+  type GroupItem,
+  OverviewGroup,
+} from './components/OverviewGroup';
 export {
   type PackageManagerTabProps,
   PackageManagerTabs,
@@ -86,6 +90,8 @@ export { useThemeState } from './logic/useAppearance';
 export { useFullTextSearch } from './logic/useFullTextSearch';
 export { usePrevNextPage } from './logic/usePrevNextPage';
 export { useRedirect4FirstVisit } from './logic/useRedirect4FirstVisit';
+export { useScrollAfterNav } from './logic/useScrollAfterNav';
+export { useScrollReset } from './logic/useScrollReset';
 export { useSetup } from './logic/useSetup';
 export { useStorageValue } from './logic/useStorageValue';
 export { parseInlineMarkdownText, renderHtmlOrText, renderInlineMarkdown } from './logic/utils';

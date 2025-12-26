@@ -11,7 +11,7 @@
     "frontmatter:watch": "npx tsx scripts/auto-frontmatter.ts --watch"
   },
   "dependencies": {
-    "@rspress/shared": "^1.47.0",
+    "@rspress/shared": "^2.0.0-rc.3",
     "@sonder/rspress-plugin-article-stats": "workspace:*",
     "@unhead/react": "^2.0.19",
     "body-scroll-lock": "4.0.0-beta.0",
@@ -22,14 +22,14 @@
     "hast-util-to-jsx-runtime": "^2.3.6",
     "lodash-es": "^4.17.22",
     "nprogress": "^0.2.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "scroll-into-view-if-needed": "^3.1.0",
     "shiki": "^3.20.0"
   },
   "devDependencies": {
-    "@rsbuild/plugin-sass": "^1.4.0",
-    "@rspress/core": "^2.0.0-rc.2",
+    "@rsbuild/plugin-sass": "~1.4.0",
+    "@rspress/core": "^2.0.0-rc.3",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.6",
